@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import '/map_page.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'map_page.dart';
 
-void main() {
-  runApp(const MyApp());
+void main(ref) async {
+  await dotenv.load(fileName: ".env");
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -18,6 +21,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const MapPage(title: 'Kameiza map'));
+        home: const MapPage());
   }
 }
